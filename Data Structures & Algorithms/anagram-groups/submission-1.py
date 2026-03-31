@@ -1,0 +1,18 @@
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        # default dict sets default value of key to a list
+        res = defaultdict(list) # mapping charCount to List of Anagrams
+        
+        for s in strs:
+            count = [0] * 26 # a ... z
+            
+            for c in s:
+                # take ASCII value of char - ASCII value of "a"
+                # (value at that index in cunt corresponds to letter)
+                count[ord(c) - ord("a")] += 1
+            
+            # list cannot be keys in python so convert count to a tuple
+            res[tuple(count)].append(s)
+
+        # output exects a list 
+        return list(res.values())
